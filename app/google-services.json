@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1056566319107",
+    "project_id": "ecommerceapp-e3d6e",
+    "storage_bucket": "ecommerceapp-e3d6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056566319107:android:c353a3415c18af1fe75636",
+        "android_client_info": {
+          "package_name": "uz.otamurod.ecommerceapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBemM-Qv0mU-cqsZEVflqk5WVSEIgfyqLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
