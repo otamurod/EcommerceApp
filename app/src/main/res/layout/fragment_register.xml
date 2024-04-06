@@ -104,7 +104,7 @@
             app:layout_constraintStart_toStartOf="@id/guidelineRegisterLeft"
             app:layout_constraintTop_toBottomOf="@id/editTextEmailRegister" />
 
-        <androidx.appcompat.widget.AppCompatButton
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/buttonRegister"
             style="@style/blueButtonStyle"
             android:layout_width="0dp"
@@ -113,7 +113,8 @@
             android:text="@string/register"
             app:layout_constraintEnd_toEndOf="@id/guidelineRegisterRight"
             app:layout_constraintStart_toStartOf="@id/guidelineRegisterLeft"
-            app:layout_constraintTop_toBottomOf="@id/editTextPasswordRegister" />
+            app:layout_constraintTop_toBottomOf="@id/editTextPasswordRegister"
+            app:spinning_bar_color="@color/white" />
 
         <ImageView
             android:id="@+id/facebookRegister"
