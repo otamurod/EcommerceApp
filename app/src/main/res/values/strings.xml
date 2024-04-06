@@ -3,4 +3,7 @@
     <string name="rightAddress">The Right Address\nFor Shopping\nAnyday</string>
     <string name="quality">It is now very easy to reach the\nbest quality among all the\nproducts on the Internet!</string>
     <string name="start">Start</string>
+    <string name="kleine">Kleine</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
 </resources>
