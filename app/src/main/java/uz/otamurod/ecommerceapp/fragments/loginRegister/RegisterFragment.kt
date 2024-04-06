@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import uz.otamurod.ecommerceapp.data.User
 import uz.otamurod.ecommerceapp.databinding.FragmentRegisterBinding
+import uz.otamurod.ecommerceapp.util.RegisterValidation
 import uz.otamurod.ecommerceapp.util.Resource
 import uz.otamurod.ecommerceapp.viewmodel.RegisterViewModel
 
@@ -61,6 +64,28 @@ class RegisterFragment : Fragment() {
                         binding.buttonRegister.revertAnimation()
                     }
                     else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.validation.collect { validation ->
+                if (validation.email is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.editTextEmailRegister.apply {
+                            requestFocus()
+                            error = validation.email.message
+                        }
+                    }
+                }
+
+                if (validation.password is RegisterValidation.Failed) {
+                    withContext(Dispatchers.Main) {
+                        binding.editTextPasswordRegister.apply {
+                            requestFocus()
+                            error = validation.password.message
+                        }
+                    }
                 }
             }
         }
