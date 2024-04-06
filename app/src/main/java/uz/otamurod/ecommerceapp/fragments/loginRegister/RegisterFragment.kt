@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import uz.otamurod.ecommerceapp.data.User
 import uz.otamurod.ecommerceapp.databinding.FragmentRegisterBinding
@@ -47,7 +48,7 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.register.collect {
                 when (it) {
                     is Resource.Loading -> {
@@ -68,7 +69,7 @@ class RegisterFragment : Fragment() {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
+        lifecycleScope.launch {
             viewModel.validation.collect { validation ->
                 if (validation.email is RegisterValidation.Failed) {
                     withContext(Dispatchers.Main) {
