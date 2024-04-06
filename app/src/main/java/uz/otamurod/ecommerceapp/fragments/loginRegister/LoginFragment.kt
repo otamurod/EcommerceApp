@@ -9,8 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import uz.otamurod.ecommerceapp.R
 import uz.otamurod.ecommerceapp.activities.ShoppingActivity
 import uz.otamurod.ecommerceapp.databinding.FragmentLoginBinding
 import uz.otamurod.ecommerceapp.util.Resource
@@ -33,6 +35,10 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+            tvDontHaveAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            }
+
             buttonLogin.setOnClickListener {
                 val email = editTextEmailLogin.text.toString().trim()
                 val password = editTextPasswordLogin.text.toString()

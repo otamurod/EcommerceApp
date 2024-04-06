@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import uz.otamurod.ecommerceapp.R
 import uz.otamurod.ecommerceapp.data.User
 import uz.otamurod.ecommerceapp.databinding.FragmentRegisterBinding
 import uz.otamurod.ecommerceapp.util.RegisterValidation
@@ -35,6 +37,10 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+            tvHaveAccount.setOnClickListener {
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+            }
+
             buttonRegister.setOnClickListener {
                 val user = User(
                     editTextFirstNameRegister.text.toString().trim(),
