@@ -1,12 +1,16 @@
 package uz.otamurod.ecommerceapp.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import uz.otamurod.ecommerceapp.R
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
+import uz.otamurod.ecommerceapp.databinding.ActivityLoginRegisterBinding
 
+@AndroidEntryPoint
 class LoginRegisterActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityLoginRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_register)
+        binding = ActivityLoginRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }
