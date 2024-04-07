@@ -9,41 +9,61 @@
         android:id="@+id/introductionFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.loginRegister.IntroductionFragment"
         android:label="fragment_introduction"
-        tools:layout="@layout/fragment_introduction" >
+        tools:layout="@layout/fragment_introduction">
         <action
             android:id="@+id/action_introductionFragment_to_accountOptionsFragment"
-            app:destination="@id/accountOptionsFragment" />
+            app:destination="@id/accountOptionsFragment"
+            app:enterAnim="@anim/enter_from_top"
+            app:exitAnim="@anim/exit_to_bottom"
+            app:popEnterAnim="@anim/enter_from_bottom"
+            app:popExitAnim="@anim/exit_to_top" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.loginRegister.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
+            app:enterAnim="@anim/enter_from_bottom"
+            app:exitAnim="@anim/exit_to_top"
+            app:popEnterAnim="@anim/enter_from_top"
+            app:popExitAnim="@anim/exit_to_bottom"
             app:popUpTo="@id/accountOptionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.loginRegister.RegisterFragment"
         android:label="fragment_register"
-        tools:layout="@layout/fragment_register" >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"
             app:popUpTo="@id/accountOptionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountOptionsFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.loginRegister.AccountOptionsFragment"
         android:label="fragment_account_options"
-        tools:layout="@layout/fragment_account_options" >
+        tools:layout="@layout/fragment_account_options">
         <action
             android:id="@+id/action_accountOptionsFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_accountOptionsFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
 </navigation>
