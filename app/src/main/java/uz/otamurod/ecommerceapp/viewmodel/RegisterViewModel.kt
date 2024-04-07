@@ -1,6 +1,7 @@
 package uz.otamurod.ecommerceapp.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,7 +9,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import uz.otamurod.ecommerceapp.data.User
 import uz.otamurod.ecommerceapp.util.*
 import uz.otamurod.ecommerceapp.util.Constants.USER_COLLECTION
@@ -27,7 +28,7 @@ class RegisterViewModel @Inject constructor(
 
     fun createAccountWithEmailAndPassword(user: User, password: String) {
         if (checkValidation(user, password)) {
-            runBlocking {
+            viewModelScope.launch {
                 _register.emit(Resource.Loading())
             }
 
@@ -45,7 +46,7 @@ class RegisterViewModel @Inject constructor(
                 validateEmail(user.email),
                 validatePassword(password)
             )
-            runBlocking {
+            viewModelScope.launch {
                 _validation.send(registerFieldsState)
             }
         }
