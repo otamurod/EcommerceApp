@@ -67,8 +67,10 @@ dependencies {
     // StepView
     implementation 'com.shuhart.stepview:stepview:1.5.1'
 
-    // Android Ktx
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+    //Navigation component
+    def nav_version = "2.7.7"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     // Dagger Hilt
     implementation 'com.google.dagger:hilt-android:2.50'
