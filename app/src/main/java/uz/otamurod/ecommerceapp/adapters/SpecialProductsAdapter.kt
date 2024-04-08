@@ -12,7 +12,7 @@ import uz.otamurod.ecommerceapp.databinding.SpecialRvItemBinding
 
 class SpecialProductsAdapter : RecyclerView.Adapter<SpecialProductsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val specialRvItemBinding: SpecialRvItemBinding) :
+    inner class ViewHolder(private val specialRvItemBinding: SpecialRvItemBinding) :
         RecyclerView.ViewHolder(specialRvItemBinding.root) {
         fun onBind(product: Product) {
             specialRvItemBinding.apply {

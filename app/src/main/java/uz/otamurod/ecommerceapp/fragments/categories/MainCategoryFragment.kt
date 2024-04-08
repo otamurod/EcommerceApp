@@ -13,6 +13,8 @@ import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import uz.otamurod.ecommerceapp.adapters.BestDealsAdapter
+import uz.otamurod.ecommerceapp.adapters.BestProductsAdapter
 import uz.otamurod.ecommerceapp.adapters.SpecialProductsAdapter
 import uz.otamurod.ecommerceapp.databinding.FragmentMainCategoryBinding
 import uz.otamurod.ecommerceapp.util.Resource
@@ -21,8 +23,11 @@ import uz.otamurod.ecommerceapp.viewmodel.MainCategoryVIewModel
 @AndroidEntryPoint
 class MainCategoryFragment : Fragment() {
     private lateinit var binding: FragmentMainCategoryBinding
-    private lateinit var specialProductsAdapter: SpecialProductsAdapter
     private val viewModel by viewModels<MainCategoryVIewModel>()
+    private lateinit var specialProductsAdapter: SpecialProductsAdapter
+    private lateinit var bestDealsAdapter: BestDealsAdapter
+    private lateinit var bestProductsAdapter: BestProductsAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +39,10 @@ class MainCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpRecyclerView()
+        setUpSpecialProductsRecyclerView()
+        setUpBestDealsRecyclerView()
+        setUpBestProductsRecyclerView()
+
         lifecycleScope.launch {
             viewModel.specialProducts.collectLatest {
                 when (it) {
@@ -43,6 +51,48 @@ class MainCategoryFragment : Fragment() {
                     }
                     is Resource.Success -> {
                         specialProductsAdapter.differ.submitList(it.data)
+                        hideLoading()
+                    }
+                    is Resource.Error -> {
+                        hideLoading()
+                        Log.e(TAG, "onViewCreated: ${it.message}")
+                        Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.bestDeals.collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        showLoading()
+                    }
+                    is Resource.Success -> {
+                        bestDealsAdapter.differ.submitList(it.data)
+                        binding.tvBestDeals.isVisible = true
+                        hideLoading()
+                    }
+                    is Resource.Error -> {
+                        hideLoading()
+                        Log.e(TAG, "onViewCreated: ${it.message}")
+                        Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.bestProducts.collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        showLoading()
+                    }
+                    is Resource.Success -> {
+                        bestProductsAdapter.differ.submitList(it.data)
+                        binding.tvBestProducts.isVisible = true
                         hideLoading()
                     }
                     is Resource.Error -> {
@@ -64,9 +114,19 @@ class MainCategoryFragment : Fragment() {
         binding.progressBar.isVisible = true
     }
 
-    private fun setUpRecyclerView() {
+    private fun setUpSpecialProductsRecyclerView() {
         specialProductsAdapter = SpecialProductsAdapter()
         binding.specialProductsRecyclerView.adapter = specialProductsAdapter
+    }
+
+    private fun setUpBestDealsRecyclerView() {
+        bestDealsAdapter = BestDealsAdapter()
+        binding.bestDealsRecyclerView.adapter = bestDealsAdapter
+    }
+
+    private fun setUpBestProductsRecyclerView() {
+        bestProductsAdapter = BestProductsAdapter()
+        binding.bestProductsRecyclerView.adapter = bestProductsAdapter
     }
 
     companion object {
