@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
         homeViewPagerAdapter =
             HomeViewPagerAdapter(categoriesFragments, childFragmentManager, lifecycle)
         binding.viewPagerHome.adapter = homeViewPagerAdapter
+        binding.viewPagerHome.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tabLayout, binding.viewPagerHome) { tab, position ->
             when (position) {
