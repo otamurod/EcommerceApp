@@ -1,8 +1,8 @@
 package uz.otamurod.ecommerceapp.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +18,11 @@ class SizesAdapter : RecyclerView.Adapter<SizesAdapter.ViewHolder>() {
 
             if (position == selectedSizePosition) {
                 sizeRvItemBinding.apply {
-                    productColorShadow.isVisible = true
+                    productColorShadow.visibility = View.VISIBLE
                 }
             } else {
                 sizeRvItemBinding.apply {
-                    productColorShadow.isVisible = false
+                    productColorShadow.visibility = View.INVISIBLE
                 }
             }
         }
@@ -66,9 +66,9 @@ class SizesAdapter : RecyclerView.Adapter<SizesAdapter.ViewHolder>() {
             }
             selectedSizePosition = holder.adapterPosition
             notifyItemChanged(selectedSizePosition)
-            onColorClick?.invoke(size)
+            onSizeClick?.invoke(size)
         }
     }
 
-    var onColorClick: ((String) -> Unit)? = null
+    var onSizeClick: ((String) -> Unit)? = null
 }

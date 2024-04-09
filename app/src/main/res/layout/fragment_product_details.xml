@@ -29,10 +29,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="6dp"
+                android:scaleType="centerCrop"
+                android:src="@color/g_blue100"
+                app:tint="@color/g_black" />
+
             <ImageView
                 android:id="@+id/buttonClose"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:layout_margin="6dp"
                 android:padding="5dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_close"

@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import dagger.hilt.android.AndroidEntryPoint
+import uz.otamurod.ecommerceapp.R
 import uz.otamurod.ecommerceapp.adapters.BestProductsAdapter
 import uz.otamurod.ecommerceapp.adapters.OfferProductsAdapter
 import uz.otamurod.ecommerceapp.databinding.FragmentBaseCategoryBinding
@@ -63,10 +65,20 @@ open class BaseCategoryFragment : Fragment() {
 
     private fun setUpOfferRecyclerView() {
         binding.offerRecyclerView.adapter = offerProductsAdapter
+
+        offerProductsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+        }
     }
 
     private fun setUpBestProductsRecyclerView() {
         binding.bestProductsRecyclerView.adapter = bestProductsAdapter
+
+        bestProductsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+        }
     }
 
 }

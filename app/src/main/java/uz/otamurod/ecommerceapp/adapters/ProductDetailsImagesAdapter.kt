@@ -6,26 +6,25 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import uz.otamurod.ecommerceapp.data.Product
 import uz.otamurod.ecommerceapp.databinding.ProductDetailsImageItemBinding
 
 class ProductDetailsImagesAdapter : RecyclerView.Adapter<ProductDetailsImagesAdapter.ViewHolder>() {
 
     inner class ViewHolder(private val productDetailsImageItemBinding: ProductDetailsImageItemBinding) :
         RecyclerView.ViewHolder(productDetailsImageItemBinding.root) {
-        fun onBind(product: Product) {
+        fun onBind(imagePath: String) {
             productDetailsImageItemBinding.apply {
-                Glide.with(itemView).load(product.images[0]).into(productDetailsImage)
+                Glide.with(itemView).load(imagePath).into(productDetailsImage)
             }
         }
     }
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Product>() {
-        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
-            return oldItem.id == newItem.id
+    private val diffCallback = object : DiffUtil.ItemCallback<String>() {
+        override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
+            return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
+        override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
             return oldItem == newItem
         }
     }
@@ -50,7 +49,7 @@ class ProductDetailsImagesAdapter : RecyclerView.Adapter<ProductDetailsImagesAda
     }
 
     override fun onBindViewHolder(holder: ProductDetailsImagesAdapter.ViewHolder, position: Int) {
-        val product = differ.currentList[position]
-        holder.onBind(product)
+        val imagePath = differ.currentList[position]
+        holder.onBind(imagePath)
     }
 }

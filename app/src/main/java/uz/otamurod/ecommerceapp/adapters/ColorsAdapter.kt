@@ -2,8 +2,8 @@ package uz.otamurod.ecommerceapp.adapters
 
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -19,13 +19,13 @@ class ColorsAdapter : RecyclerView.Adapter<ColorsAdapter.ViewHolder>() {
             colorRvItemBinding.productColor.setImageDrawable(colorDrawable)
             if (position == selectedColorPosition) {
                 colorRvItemBinding.apply {
-                    productColorShadow.isVisible = true
-                    imagePicked.isVisible = true
+                    productColorShadow.visibility = View.VISIBLE
+                    imagePicked.visibility = View.VISIBLE
                 }
             } else {
                 colorRvItemBinding.apply {
-                    productColorShadow.isVisible = false
-                    imagePicked.isVisible = false
+                    productColorShadow.visibility = View.INVISIBLE
+                    imagePicked.visibility = View.INVISIBLE
                 }
             }
         }
