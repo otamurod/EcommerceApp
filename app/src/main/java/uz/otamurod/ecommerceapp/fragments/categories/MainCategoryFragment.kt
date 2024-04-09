@@ -11,9 +11,11 @@ import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import uz.otamurod.ecommerceapp.R
 import uz.otamurod.ecommerceapp.adapters.BestDealsAdapter
 import uz.otamurod.ecommerceapp.adapters.BestProductsAdapter
 import uz.otamurod.ecommerceapp.adapters.SpecialProductsAdapter
@@ -123,16 +125,31 @@ class MainCategoryFragment : Fragment() {
     private fun setUpSpecialProductsRecyclerView() {
         specialProductsAdapter = SpecialProductsAdapter()
         binding.specialProductsRecyclerView.adapter = specialProductsAdapter
+
+        specialProductsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+        }
     }
 
     private fun setUpBestDealsRecyclerView() {
         bestDealsAdapter = BestDealsAdapter()
         binding.bestDealsRecyclerView.adapter = bestDealsAdapter
+
+        bestDealsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+        }
     }
 
     private fun setUpBestProductsRecyclerView() {
         bestProductsAdapter = BestProductsAdapter()
         binding.bestProductsRecyclerView.adapter = bestProductsAdapter
+
+        bestProductsAdapter.onClick = {
+            val bundle = Bundle().apply { putParcelable("product", it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, bundle)
+        }
     }
 
     companion object {
