@@ -34,4 +34,7 @@
     <string name="see_product">See product</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="chair">Chair</string>
+    <string name="product_description">Product description</string>
+    <string name="color">Color</string>
+    <string name="size">Size</string>
 </resources>
