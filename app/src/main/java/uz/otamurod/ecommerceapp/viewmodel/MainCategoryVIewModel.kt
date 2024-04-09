@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import uz.otamurod.ecommerceapp.data.PagingInfo
 import uz.otamurod.ecommerceapp.data.Product
 import uz.otamurod.ecommerceapp.util.Resource
 import javax.inject.Inject
@@ -67,7 +68,7 @@ class MainCategoryVIewModel @Inject constructor(
     }
 
     fun fetchBestProducts() {
-        if (!pagingInfo.isPagingDone) {
+        if (!pagingInfo.isBestProductsPagingDone) {
             viewModelScope.launch {
                 _bestProducts.emit(Resource.Loading())
             }
@@ -84,7 +85,7 @@ class MainCategoryVIewModel @Inject constructor(
                 .get()
                 .addOnSuccessListener { result ->
                     val bestProductsList = result.toObjects(Product::class.java)
-                    pagingInfo.isPagingDone = bestProductsList == pagingInfo.oldBestProducts
+                    pagingInfo.isBestProductsPagingDone = bestProductsList == pagingInfo.oldBestProducts
                     pagingInfo.oldBestProducts = bestProductsList
 
                     viewModelScope.launch {
@@ -99,9 +100,3 @@ class MainCategoryVIewModel @Inject constructor(
         }
     }
 }
-
-internal data class PagingInfo(
-    var bestProductsPage: Long = 1,
-    var oldBestProducts: List<Product> = emptyList(),
-    var isPagingDone: Boolean = false
-)

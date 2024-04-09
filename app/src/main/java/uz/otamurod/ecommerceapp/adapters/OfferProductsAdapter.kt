@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.otamurod.ecommerceapp.data.Product
-import uz.otamurod.ecommerceapp.databinding.BestProductRvItemBinding
+import uz.otamurod.ecommerceapp.databinding.OfferProductRvItemBinding
 
-class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.ViewHolder>() {
-    inner class ViewHolder(private val bestProductRvItemBinding: BestProductRvItemBinding) :
-        RecyclerView.ViewHolder(bestProductRvItemBinding.root) {
+class OfferProductsAdapter : RecyclerView.Adapter<OfferProductsAdapter.ViewHolder>() {
+    inner class ViewHolder(private val offerProductRvItemBinding: OfferProductRvItemBinding) :
+        RecyclerView.ViewHolder(offerProductRvItemBinding.root) {
         fun onBind(product: Product) {
-            bestProductRvItemBinding.apply {
+            offerProductRvItemBinding.apply {
                 Glide.with(itemView).load(product.images[0]).into(imgProduct)
                 product.offerPercentage?.let {
                     val remainingPricePercentage = 1f - it
@@ -48,9 +48,9 @@ class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.ViewHolder>
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): BestProductsAdapter.ViewHolder {
+    ): OfferProductsAdapter.ViewHolder {
         return ViewHolder(
-            BestProductRvItemBinding.inflate(
+            OfferProductRvItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
