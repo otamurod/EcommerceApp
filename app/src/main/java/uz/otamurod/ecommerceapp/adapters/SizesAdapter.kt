@@ -66,9 +66,9 @@ class SizesAdapter : RecyclerView.Adapter<SizesAdapter.ViewHolder>() {
             }
             selectedSizePosition = holder.adapterPosition
             notifyItemChanged(selectedSizePosition)
-            onColorClick?.invoke(size)
+            onSizeClick?.invoke(size)
         }
     }
 
-    var onColorClick: ((String) -> Unit)? = null
+    var onSizeClick: ((String) -> Unit)? = null
 }
