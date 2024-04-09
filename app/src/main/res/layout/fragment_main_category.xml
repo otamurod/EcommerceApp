@@ -81,6 +81,7 @@
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/specialProductsRecyclerView"
                 app:layout_constraintTop_toBottomOf="@id/bestDealsRecyclerView" />
 
@@ -100,7 +101,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvBestProducts"
                 app:spanCount="2"
-                tools:listitem="@layout/product_rv_item" />
+                tools:listitem="@layout/best_product_rv_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
