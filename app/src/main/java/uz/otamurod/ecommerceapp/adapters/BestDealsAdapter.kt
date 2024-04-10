@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.otamurod.ecommerceapp.data.Product
 import uz.otamurod.ecommerceapp.databinding.BestDealsRvItemBinding
+import uz.otamurod.ecommerceapp.helper.getProductPrice
 
 class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.ViewHolder>() {
     inner class ViewHolder(private val bestDealsRvItemBinding: BestDealsRvItemBinding) :
@@ -17,12 +18,9 @@ class BestDealsAdapter : RecyclerView.Adapter<BestDealsAdapter.ViewHolder>() {
         fun onBind(product: Product) {
             bestDealsRvItemBinding.apply {
                 Glide.with(itemView).load(product.images[0]).into(imgBestDeal)
-                product.offerPercentage?.let {
-                    val remainingPricePercentage = 1f - it
-                    val priceAfterDiscount = remainingPricePercentage * product.price
-                    tvNewPrice.text = String.format("$%.2f", priceAfterDiscount)
-                    tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-                }
+                val priceAfterDiscount = product.offerPercentage.getProductPrice(product.price)
+                tvNewPrice.text = String.format("$%.2f", priceAfterDiscount)
+                tvOldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 if (product.offerPercentage == null) {
                     tvNewPrice.isVisible = false
                 }

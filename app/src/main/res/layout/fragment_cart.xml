@@ -87,6 +87,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/bottomGuideLine"
             app:layout_constraintEnd_toEndOf="@id/rightGuideLine"
             app:layout_constraintStart_toStartOf="@id/leftGuideLine"
@@ -135,12 +137,12 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="15dp"
                 android:fontFamily="@font/sf_pro_display"
-                android:text="@string/new_price_sample"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/new_price_sample" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
