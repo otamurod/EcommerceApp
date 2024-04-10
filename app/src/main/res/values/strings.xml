@@ -37,4 +37,8 @@
     <string name="product_description">Product description</string>
     <string name="color">Color</string>
     <string name="size">Size</string>
+    <string name="my_cart">My Cart</string>
+    <string name="total">Total</string>
+    <string name="check_out">Check out</string>
+    <string name="your_shopping_cart_is_empty">Your shopping cart is empty</string>
 </resources>
