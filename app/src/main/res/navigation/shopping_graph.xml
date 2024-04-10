@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shopping_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/addressFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -36,7 +36,11 @@
         android:id="@+id/profileFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.shopping.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.productdetails.ProductDetailsFragment"
@@ -45,5 +49,16 @@
         <argument
             android:name="product"
             app:argType="uz.otamurod.ecommerceapp.data.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="uz.otamurod.ecommerceapp.fragments.address.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" >
+        <argument
+            android:name="address"
+            app:argType="uz.otamurod.ecommerceapp.data.Address"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

@@ -1,0 +1,16 @@
+package uz.otamurod.ecommerceapp.data
+
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+data class Address(
+    val addressTitle: String,
+    val fullName: String,
+    val street: String,
+    val phoneNumber: String,
+    val city: String,
+    val state: String,
+) : Parcelable {
+    constructor() : this("", "", "", "", "", "")
+}

@@ -41,4 +41,13 @@
     <string name="total">Total</string>
     <string name="check_out">Check out</string>
     <string name="your_shopping_cart_is_empty">Your shopping cart is empty</string>
+    <string name="addresses">Addresses</string>
+    <string name="address_location_ex_home">Address location Ex: Home</string>
+    <string name="full_name">Full Name</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="phone">Phone</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
 </resources>
