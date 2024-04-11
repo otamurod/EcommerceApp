@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shopping_graph"
-    app:startDestination="@id/addressFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.shopping.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -18,7 +18,7 @@
         android:id="@+id/searchFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.shopping.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -27,7 +27,10 @@
         android:id="@+id/cartFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.shopping.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_billingFragment"
+            app:destination="@id/billingFragment" />
         <action
             android:id="@+id/action_cartFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -36,7 +39,7 @@
         android:id="@+id/profileFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.shopping.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
@@ -45,7 +48,7 @@
         android:id="@+id/productDetailsFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.productdetails.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" >
+        tools:layout="@layout/fragment_product_details">
         <argument
             android:name="product"
             app:argType="uz.otamurod.ecommerceapp.data.Product" />
@@ -54,11 +57,26 @@
         android:id="@+id/addressFragment"
         android:name="uz.otamurod.ecommerceapp.fragments.address.AddressFragment"
         android:label="fragment_address"
-        tools:layout="@layout/fragment_address" >
+        tools:layout="@layout/fragment_address">
         <argument
             android:name="address"
+            android:defaultValue="@null"
             app:argType="uz.otamurod.ecommerceapp.data.Address"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/billingFragment"
+        android:name="uz.otamurod.ecommerceapp.fragments.billing.BillingFragment"
+        android:label="fragment_billing"
+        tools:layout="@layout/fragment_billing">
+        <action
+            android:id="@+id/action_billingFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+        <argument
+            android:name="totalPrice"
+            app:argType="float" />
+        <argument
+            android:name="cartProducts"
+            app:argType="uz.otamurod.ecommerceapp.data.CartProduct[]" />
     </fragment>
 </navigation>

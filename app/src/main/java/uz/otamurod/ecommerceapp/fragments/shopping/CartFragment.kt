@@ -40,6 +40,8 @@ class CartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var totalPrice = 0f
+
         setUpCartProductsRV()
 
         lifecycleScope.launch {
@@ -72,9 +74,9 @@ class CartFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.productsPrice.collectLatest { price ->
                 price?.let {
-                    binding.tvTotalPrice.text = String.format("$ %.2f", price)
+                    totalPrice = it
+                    binding.tvTotalPrice.text = String.format("$ %.2f", it)
                 }
-
             }
         }
 
@@ -98,6 +100,14 @@ class CartFragment : Fragment() {
 
         binding.imageCloseCart.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.buttonCheckout.setOnClickListener {
+            val action = CartFragmentDirections.actionCartFragmentToBillingFragment(
+                totalPrice,
+                cartProductsAdapter.differ.currentList.toTypedArray()
+            )
+            findNavController().navigate(action)
         }
     }
 
