@@ -26,7 +26,7 @@ class BillingViewModel @Inject constructor(
         getUserAddresses()
     }
 
-    fun getUserAddresses() {
+    private fun getUserAddresses() {
         viewModelScope.launch { _addresses.emit(Resource.Loading()) }
 
         firestore.collection(USER_COLLECTION).document(firebaseAuth.uid!!)

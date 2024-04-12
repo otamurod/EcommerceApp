@@ -57,4 +57,8 @@
     <string name="place_order">Place Order</string>
     <string name="my_account">My account</string>
     <string name="forgot_change_password">Forgot/Change password</string>
+    <string name="all_orders">All orders</string>
+    <string name="no_orders_to_show">No orders to show</string>
+    <string name="address">Address</string>
+    <string name="products">Products</string>
 </resources>

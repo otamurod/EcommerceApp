@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/shopping_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/allOrdersFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -87,4 +87,24 @@
         android:name="uz.otamurod.ecommerceapp.fragments.settings.UserAccountFragment"
         android:label="fragment_user_account"
         tools:layout="@layout/fragment_user_account" />
+    <fragment
+        android:id="@+id/allOrdersFragment"
+        android:name="uz.otamurod.ecommerceapp.fragments.settings.AllOrdersFragment"
+        android:label="fragment_all_orders"
+        tools:layout="@layout/fragment_all_orders" >
+        <action
+            android:id="@+id/action_allOrdersFragment_to_orderDetailFragment"
+            app:destination="@id/orderDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailFragment"
+        android:name="uz.otamurod.ecommerceapp.fragments.settings.OrderDetailFragment"
+        android:label="fragment_order_detail"
+        tools:layout="@layout/fragment_order_detail" >
+        <argument
+            android:name="order"
+            app:argType="uz.otamurod.ecommerceapp.data.order.Order"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 </navigation>
