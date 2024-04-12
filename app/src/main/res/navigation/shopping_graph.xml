@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_profileFragment_to_addressFragment"
             app:destination="@id/addressFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_userAccountFragment"
+            app:destination="@id/userAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
@@ -79,4 +82,9 @@
             android:name="cartProducts"
             app:argType="uz.otamurod.ecommerceapp.data.CartProduct[]" />
     </fragment>
+    <fragment
+        android:id="@+id/userAccountFragment"
+        android:name="uz.otamurod.ecommerceapp.fragments.settings.UserAccountFragment"
+        android:label="fragment_user_account"
+        tools:layout="@layout/fragment_user_account" />
 </navigation>
