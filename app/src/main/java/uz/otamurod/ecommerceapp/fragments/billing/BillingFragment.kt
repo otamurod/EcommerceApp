@@ -27,6 +27,9 @@ import uz.otamurod.ecommerceapp.databinding.FragmentBillingBinding
 import uz.otamurod.ecommerceapp.util.Resource
 import uz.otamurod.ecommerceapp.viewmodel.BillingViewModel
 import uz.otamurod.ecommerceapp.viewmodel.OrderViewModel
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class BillingFragment : Fragment() {
@@ -58,6 +61,14 @@ class BillingFragment : Fragment() {
 
         setUpBillingProductsRv()
         setUpAddressRv()
+        if (!args.payment) {
+            binding.apply {
+                buttonPlaceOrder.isVisible = false
+                totalBoxContainer.isVisible = false
+                middleLine.isVisible = false
+                bottomLine.isVisible = false
+            }
+        }
 
         binding.buttonPlaceOrder.setOnClickListener {
             if (selectedAddress == null) {
@@ -131,7 +142,12 @@ class BillingFragment : Fragment() {
                     dialog.dismiss()
                 }.setPositiveButton("Yes") { dialog, _ ->
                     val order = Order(
-                        OrderStatus.Ordered.status, totalPrice, products, selectedAddress!!
+                        OrderStatus.Ordered.status,
+                        totalPrice,
+                        products,
+                        selectedAddress!!,
+                        SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(Date()),
+                        Random.nextLong(0, 100_000_000_000) + totalPrice.toLong()
                     )
                     orderViewModel.placeOrder(order)
 
@@ -148,6 +164,10 @@ class BillingFragment : Fragment() {
 
         addressAdapter.onClick = {
             selectedAddress = it
+            if (!args.payment) {
+                val bundle = Bundle().apply { putParcelable("address", selectedAddress) }
+                findNavController().navigate(R.id.action_billingFragment_to_addressFragment, bundle)
+            }
         }
     }
 

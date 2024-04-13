@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import uz.otamurod.ecommerceapp.R
 import uz.otamurod.ecommerceapp.data.Address
 import uz.otamurod.ecommerceapp.databinding.FragmentAddressBinding
 import uz.otamurod.ecommerceapp.util.Resource
@@ -67,17 +68,18 @@ class AddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val address = args.address
-        if (address == null) {
+        val argsAddress = args.address
+        if (argsAddress == null) {
             binding.buttonDelelte.visibility = View.GONE
         } else {
             binding.apply {
-                edAddressTitle.setText(address.addressTitle)
-                edFullName.setText(address.fullName)
-                edState.setText(address.street)
-                edPhone.setText(address.phoneNumber)
-                edCity.setText(address.city)
-                edState.setText(address.state)
+                edAddressTitle.setText(argsAddress.addressTitle)
+                edFullName.setText(argsAddress.fullName)
+                edStreet.setText(argsAddress.street)
+                edPhone.setText(argsAddress.phoneNumber)
+                edCity.setText(argsAddress.city)
+                edState.setText(argsAddress.state)
+                buttonSave.text = getString(R.string.update)
             }
         }
 
@@ -91,7 +93,19 @@ class AddressFragment : Fragment() {
                 val state = edState.text.toString()
                 val address = Address(addressTitle, fullName, street, phone, city, state)
 
-                viewModel.addAddress(address)
+                if (argsAddress == null) {
+                    viewModel.addAddress(address)
+                } else {
+                    viewModel.updateAddress(address, argsAddress)
+                }
+            }
+
+            buttonDelelte.setOnClickListener {
+                viewModel.removeAddress(argsAddress!!)
+            }
+
+            imageAddressClose.setOnClickListener {
+                findNavController().navigateUp()
             }
         }
     }

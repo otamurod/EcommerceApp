@@ -61,4 +61,14 @@
     <string name="no_orders_to_show">No orders to show</string>
     <string name="address">Address</string>
     <string name="products">Products</string>
+    <string name="settings">Settings</string>
+    <string name="name">Name</string>
+    <string name="edit_personal_details">Edit personal details</string>
+    <string name="orders">Orders</string>
+    <string name="track_orders">Track Orders</string>
+    <string name="notifications">Notifications</string>
+    <string name="regional">Regional</string>
+    <string name="logout">Logout</string>
+    <string name="version_1_0">Version 1.0</string>
+    <string name="update">Update</string>
 </resources>
